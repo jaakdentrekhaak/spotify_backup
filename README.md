@@ -23,17 +23,24 @@ pip install requests
 # How it works
 After reading the requirements, you can run the program from the terminal (depending on your operating system):
 ```python
-python3 main.py
+python3 spotify_to_json.py
 ```
 
 The program will then ask to enter the Spotify URL for the playlist you want to create a backup for. The results will be stored in a JSON file called `playlist_info.json`.
 
 To stop the program, press `CTRL+C` in the terminal.
 
-NOTE: the program currently only works if your playlists are public.
-
 # Development
 ## TODO
 - remove redundant information from JSON file
-- make GUI
-- create playlists given
+- make GUI (-> is becoming a web application)
+- create playlists given the JSON
+- json_to_spotify.create_playlist: make adding description possible
+- after receiving the access token, show the page where you have to enter your playlist URL
+
+## Explanation Spotify authorization
+When a client goes to `/login`, he gets prompted with the `login.html` page from [this example](https://github.com/spotify/web-api-auth-examples/blob/master/implicit_grant/public/index.html). Before the login button works, the client first has to get the client ID from this registered Spotify application (found in the `config.json` file). This is done in the file `login.js` by sending a GET request to our server, to which our server responds with the client ID.
+
+After pressing the login button, the client is redirected to the Spotify login page where he has to login. When pressing login on the official Spotify login page, Spotify redirects the user to our `/callback` page. Spotify also appends a hash fragment with data encoded as a query string (e.g. `/callback#access_token=blabla&token_type=Bearer&expires_in=3600`). Our server CANNOT read these parameters after the #, only the client can see these. The file `callback.js` extracts the access token from the hash fragment and sends this with a POST request to our server.
+
+At this point our server has the access token of the logged-in client and can make further requests such as creating a playlist etc.
