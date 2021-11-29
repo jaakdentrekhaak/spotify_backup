@@ -36,7 +36,7 @@ To stop the program, press `CTRL+C` in the terminal.
 - make GUI (-> is becoming a web application)
 - create playlists given the JSON
 - json_to_spotify.create_playlist: make adding description possible
-- after receiving the access token, show the page where you have to enter your playlist URL
+- rewrite everything to be a web application (se spotify_to_json.py should not store files itself)
 
 ## Explanation Spotify authorization
 When a client goes to `/login`, he gets prompted with the `login.html` page from [this example](https://github.com/spotify/web-api-auth-examples/blob/master/implicit_grant/public/index.html). Before the login button works, the client first has to get the client ID from this registered Spotify application (found in the `config.json` file). This is done in the file `login.js` by sending a GET request to our server, to which our server responds with the client ID.
