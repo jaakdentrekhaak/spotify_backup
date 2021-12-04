@@ -4,6 +4,7 @@ import json
 app = Flask(__name__)
 logged_in = False
 access_token = None
+scope = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public'
 
 
 @app.route('/')
@@ -22,7 +23,8 @@ def home():
 
 @app.route('/login')
 def login():
-    return render_template('login.html', client_id=getClientId())
+    global scope
+    return render_template('login.html', client_id=getClientId(), scope=scope)
 
 
 def getClientId():
