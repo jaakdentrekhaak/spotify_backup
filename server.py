@@ -6,7 +6,7 @@ app = Flask(__name__)
 logged_in = False
 access_token = None
 scope = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public'
-spotify_to_json = None
+spotify_to_json: SpotifyToJson = None
 
 
 @app.route('/')
@@ -23,15 +23,21 @@ def home():
         print('[SERVER] Login succeeded')
         user_name = spotify_to_json.getUserName()
         user_playlist_names_and_sizes = spotify_to_json.getUserPlaylistsNamesAndSizes()
-        print(user_name)
-        print(user_playlist_names_and_sizes)
-        return render_template('index.html')
+        return render_template('index.html', user_name=user_name, user_playlist_names_and_sizes=user_playlist_names_and_sizes)
 
 
 @app.route('/login')
 def login():
     global scope
     return render_template('login.html', client_id=getClientId(), scope=scope)
+
+
+@app.route('/spotifytojson', methods=['POST'])
+def spotify_to_json_method():
+    # Returns dictionary that says which playlists have been selected for converting e.g. {'0': 'on'}
+    # (Does not say which playlists have NOT been selected)
+    # result_json = spotify_to_json.getOutputJson(request.form.to_dict().keys())
+    return "Hello"
 
 
 def getClientId():

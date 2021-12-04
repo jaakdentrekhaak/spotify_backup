@@ -1,4 +1,5 @@
 import json
+from typing import Dict, List
 import requests
 
 
@@ -33,6 +34,12 @@ class SpotifyToJson:
             items.extend(response_json['items'])
 
         return items
+
+    def getOutputJson(self, playlist_indices: List[str]):
+        playlists_to_parse = []
+        for i in playlist_indices:
+            playlists_to_parse.append(self.user_playlists[int(i)])
+        # TODO: parse list to store as JSON file
 
     def createHeaders(self):
         return {

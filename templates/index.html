@@ -10,7 +10,21 @@
 
 <body>
     <div id="container">
-        <p>Coming soon...</p>
+        <p>Welcome {{user_name}}</p>
+        <br>
+        <p>Select the playlists you want to convert to JSON and press the button</p>
+        <br>
+        <form action="/spotifytojson" method="post">
+            {% for playlist in user_playlist_names_and_sizes %}
+            <input type="checkbox" id="{{user_playlist_names_and_sizes.index(playlist)}}"
+                name="{{user_playlist_names_and_sizes.index(playlist)}}">
+            <label for="{{user_playlist_names_and_sizes.index(playlist)}}">
+                {{playlist[0] ~ ' - ' ~ playlist[1] ~ ' tracks'}}
+            </label><br>
+            {% endfor %}
+            <br>
+            <input type="submit" value="Convert">
+        </form>
     </div>
 </body>
 
