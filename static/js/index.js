@@ -13,7 +13,7 @@ document.getElementById('button_generate_json-button').addEventListener('click',
     };
 
     // Send playlist url to server
-    $.ajax('http://localhost:8080/handle_playlist_url', {
+    $.ajax('http://localhost:5000/handle_playlist_url', {
         data: JSON.stringify(jsonToSend),
         contentType: 'application/json',
         type: 'POST'
