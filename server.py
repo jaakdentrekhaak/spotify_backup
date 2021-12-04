@@ -22,8 +22,7 @@ def home():
 
 @app.route('/login')
 def login():
-    print(request.host)
-    return render_template('login.html')
+    return render_template('login.html', client_id=getClientId())
 
 
 def getClientId():

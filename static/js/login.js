@@ -1,7 +1,5 @@
 (function () {
 
-    document.getElementById("pp").innerHTML = "Breakfast"
-
     /**
      * Obtains parameters from the hash of the URL
      * @return Object
@@ -26,15 +24,13 @@
     } else {
         document.getElementById('login-button').addEventListener('click', function () {
 
-            // var client_id = document.currentScript.getAttribute('client_id');
-            var client_id = 'e88c2ec218a64579985ecbfe80200959';
             var redirect_uri = 'http://localhost:5000/login'; // Where we get access token as hash fragment parameter
 
             var scope = 'user-read-private user-read-email';
 
             var url = 'https://accounts.spotify.com/authorize';
             url += '?response_type=token';
-            url += '&client_id=' + encodeURIComponent(client_id);
+            url += '&client_id=' + encodeURIComponent(client_id); // client_id set in login.html
             url += '&scope=' + encodeURIComponent(scope);
             url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
 
