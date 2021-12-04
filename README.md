@@ -54,3 +54,5 @@ We need to be able to receive the playlists of the user and also be able to edit
 - playlist-modify-public: to create and modify user public playlists
 
 At this point our server has the access token of the logged-in client and can make further requests such as creating a playlist etc.
+
+NOTE: if new users want to use this program, they need to be given access to the application in the Spotify dashboard

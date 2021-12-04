@@ -1,6 +1,6 @@
 import requests
 import json
-from spotify_to_json import get_access_token
+from spotify_to_json_old import get_access_token
 
 
 def create_playlist(user_id: str, name: str):

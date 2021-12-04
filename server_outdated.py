@@ -2,7 +2,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 import cgi
-import spotify_to_json
+import spotify_to_json_old
 
 hostName = "localhost"
 serverPort = 5000
@@ -58,7 +58,7 @@ class MyServer(BaseHTTPRequestHandler):
             # Convert Spotify URL to JSON file
             length = int(self.headers.get('content-length'))
             message = json.loads(self.rfile.read(length))
-            spotify_to_json.handle_playlist(message['playlist_url'])
+            spotify_to_json_old.handle_playlist(message['playlist_url'])
             self.send_response(200)
         else:
             self.send_response(404)

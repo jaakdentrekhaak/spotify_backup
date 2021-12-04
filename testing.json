@@ -1,0 +1,86 @@
+{
+    "testing": [
+        {
+            "collaborative": false,
+            "description": "",
+            "external_urls": {
+                "spotify": "https://open.spotify.com/playlist/4Ykre5kk7pZf7w0ZjuV1f3"
+            },
+            "href": "https://api.spotify.com/v1/playlists/4Ykre5kk7pZf7w0ZjuV1f3",
+            "id": "4Ykre5kk7pZf7w0ZjuV1f3",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://mosaic.scdn.co/640/ab67616d0000b2730dda9c11454b9053d07f585aab67616d0000b2732277d1a849a63c7075ec38ffab67616d0000b2735c29a88ba5341ca428f0c322ab67616d0000b273bb7d33186e4a26421c6a77ae",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://mosaic.scdn.co/300/ab67616d0000b2730dda9c11454b9053d07f585aab67616d0000b2732277d1a849a63c7075ec38ffab67616d0000b2735c29a88ba5341ca428f0c322ab67616d0000b273bb7d33186e4a26421c6a77ae",
+                    "width": 300
+                },
+                {
+                    "height": 60,
+                    "url": "https://mosaic.scdn.co/60/ab67616d0000b2730dda9c11454b9053d07f585aab67616d0000b2732277d1a849a63c7075ec38ffab67616d0000b2735c29a88ba5341ca428f0c322ab67616d0000b273bb7d33186e4a26421c6a77ae",
+                    "width": 60
+                }
+            ],
+            "name": "Second testing playlist",
+            "owner": {
+                "display_name": "Jaakdentrekhaak Dev",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/user/31niq3gveqekbrffmlbdf76lviqu"
+                },
+                "href": "https://api.spotify.com/v1/users/31niq3gveqekbrffmlbdf76lviqu",
+                "id": "31niq3gveqekbrffmlbdf76lviqu",
+                "type": "user",
+                "uri": "spotify:user:31niq3gveqekbrffmlbdf76lviqu"
+            },
+            "primary_color": null,
+            "public": false,
+            "snapshot_id": "NiwyMGQ3NTRjYzBiMGJmOWRlNmIwNjQ4ZTdiMTIxODY4NjYxMmJhMDRk",
+            "tracks": {
+                "href": "https://api.spotify.com/v1/playlists/4Ykre5kk7pZf7w0ZjuV1f3/tracks",
+                "total": 4
+            },
+            "type": "playlist",
+            "uri": "spotify:playlist:4Ykre5kk7pZf7w0ZjuV1f3"
+        },
+        {
+            "collaborative": false,
+            "description": "This is a playlist for development testing",
+            "external_urls": {
+                "spotify": "https://open.spotify.com/playlist/1qch9iOi4HDzxaYdKWTbGp"
+            },
+            "href": "https://api.spotify.com/v1/playlists/1qch9iOi4HDzxaYdKWTbGp",
+            "id": "1qch9iOi4HDzxaYdKWTbGp",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b27346e1307c35579c3483ea7b03",
+                    "width": 640
+                }
+            ],
+            "name": "Testing playlist",
+            "owner": {
+                "display_name": "Jaakdentrekhaak Dev",
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/user/31niq3gveqekbrffmlbdf76lviqu"
+                },
+                "href": "https://api.spotify.com/v1/users/31niq3gveqekbrffmlbdf76lviqu",
+                "id": "31niq3gveqekbrffmlbdf76lviqu",
+                "type": "user",
+                "uri": "spotify:user:31niq3gveqekbrffmlbdf76lviqu"
+            },
+            "primary_color": null,
+            "public": false,
+            "snapshot_id": "NSwwZTQ0ZTQ2NzRmZDk1YmQwY2I4MDNiNzIwNmE2MzU4Nzc3OGQ3ODgx",
+            "tracks": {
+                "href": "https://api.spotify.com/v1/playlists/1qch9iOi4HDzxaYdKWTbGp/tracks",
+                "total": 3
+            },
+            "type": "playlist",
+            "uri": "spotify:playlist:1qch9iOi4HDzxaYdKWTbGp"
+        }
+    ]
+}
