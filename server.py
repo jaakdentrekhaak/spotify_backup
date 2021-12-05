@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request, Response
 import json
 from SpotifyToJson import SpotifyToJson
 
@@ -36,8 +36,18 @@ def login():
 def spotify_to_json_method():
     # Returns dictionary that says which playlists have been selected for converting e.g. {'0': 'on'}
     # (Does not say which playlists have NOT been selected)
-    # result_json = spotify_to_json.getOutputJson(request.form.to_dict().keys())
-    return "Hello"
+    user_playlists = spotify_to_json.getUserPlaylists()
+    result = []
+    for k in request.form.to_dict().keys():
+        result.append(user_playlists[int(k)])
+    content = json.dumps(result)
+    return Response(
+        content,
+        mimetype='application/json',
+        headers={
+            'Content-Disposition': 'attachment;filename=spotify_playlist_backup.json'
+        }
+    )
 
 
 def getClientId():
