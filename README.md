@@ -31,16 +31,6 @@ The program will then ask to enter the Spotify URL for the playlist you want to 
 To stop the program, press `CTRL+C` in the terminal.
 
 # Development
-## TODO
-- remove redundant information from JSON file
-- make GUI (-> is becoming a web application)
-- create playlists given the JSON
-- json_to_spotify.create_playlist: make adding description possible
-- rewrite everything to be a web application (so spotify_to_json.py should not store files itself)
-- make logic behing index.html page
-    - show user's playlists with checkboxes
-    - user can select which playlists they want to convert to JSON
-
 ## Explanation Spotify authorization
 When a client goes to `/login`, he gets prompted with the `login.html` page from [this example](https://github.com/spotify/web-api-auth-examples/blob/master/implicit_grant/templates/index.html). Before the login button works, the client first has to get the client ID from this registered Spotify application (found in the `config.json` file). This client ID is passed to the login.html file via Jinja syntax ({{}}).
 

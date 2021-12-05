@@ -9,6 +9,9 @@ scope = 'user-read-private user-read-email playlist-modify-private playlist-read
 spotify_to_json: SpotifyToJson = None
 
 
+# TODO: create Spotify playlist from JSON
+# TODO: create frontpage where you have to choose if you want to do Spotify -> JSON or JSON -> Spotify and redirect buttons to different URLs
+#   spotify to json is the current implementatino; json to spotify should not get the information of all the playlists of the user
 @app.route('/')
 def home():
     global logged_in, access_token, spotify_to_json

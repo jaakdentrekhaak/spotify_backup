@@ -67,6 +67,8 @@ class SpotifyToJson:
 
         result = []
 
+        # TODO: only show own playlists
+
         for i in items:
             result.append(self.parsePlaylistEntry(i))
 
@@ -83,7 +85,6 @@ class SpotifyToJson:
         """
         result = {}
         result['description'] = playlist['description']
-        result['id'] = playlist['id']
         result['name'] = playlist['name']
         result['public'] = playlist['public']
         result['uri'] = playlist['uri']
@@ -91,15 +92,14 @@ class SpotifyToJson:
             playlist['tracks']['href'])
         return result
 
-    def getTracksInPlaylist(self, api_playlist_url: str) -> List[str]:
-        """Get track URIs from the tracks in the given playlist
+    def getTracksInPlaylist(self, api_playlist_url: str) -> List[Dict]:
+        """Get track data from the tracks in the given playlist
 
         Args:
             api_playlist_url (str): API URL for a Spotify playlist
-            headers (Dict): A dictionary with HTTP headers containing the authorization token
 
         Returns:
-            List[str]: list of track URIs
+            List[Dict]: list of track data such as URI, name and artist
         """
         api_playlist_url
 
@@ -117,8 +117,17 @@ class SpotifyToJson:
             items.extend(response_json['items'])
 
         result = []
+        # TODO: also add name and artist of song (for if Spotify doesn't work in the future)
         for i in items:
-            result.append(i['track']['uri'])
+            # Do not store local songs (e.g. spotify:local:::blabla:182)
+            if 'track' in i['track']['uri']:
+                result.append(
+                    {
+                        'uri': i['track']['uri'],
+                        'name': i['track']['name'],
+                        'artists': [a['name'] for a in i['track']['artists']]
+                    }
+                )
 
         return result
 
