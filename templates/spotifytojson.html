@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Backup</title>
+</head>
+
+<body>
+    <div id="container">
+        <p>Welcome {{user_name}}</p>
+        <p>Select the playlists you want to convert to JSON and press the convert button</p>
+        <form action="/spotifytojson" method="post">
+            {% for playlist in user_playlist_names_and_sizes %}
+            <input type="checkbox" id="{{user_playlist_names_and_sizes.index(playlist)}}"
+                name="{{user_playlist_names_and_sizes.index(playlist)}}" checked>
+            <label for="{{user_playlist_names_and_sizes.index(playlist)}}">
+                {{playlist[0] ~ ' - ' ~ playlist[1] ~ ' tracks'}}
+            </label><br>
+            {% endfor %}
+            <br>
+            <input type="submit" value="Convert">
+        </form>
+    </div>
+</body>
+
+</html>

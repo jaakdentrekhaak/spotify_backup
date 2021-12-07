@@ -67,15 +67,16 @@ class SpotifyToJson:
 
         result = []
 
-        # TODO: only show own playlists
-
         for i in items:
-            result.append(self.parsePlaylistEntry(i))
+            parsedEntry = self.parsePlaylistEntry(i)
+            if parsedEntry is not None:
+                result.append(parsedEntry)
 
         return result
 
     def parsePlaylistEntry(self, playlist: Dict):
         """Extract the necessary information from the given playlist entry. Also get the actual data for the tracks.
+        If the playlist is not owned by the current user, return None.
 
         Args:
             playlist (Dict): unparsed playlist entry
@@ -83,6 +84,8 @@ class SpotifyToJson:
         Returns:
             Dict: parsed playlist entry
         """
+        if playlist['owner']['id'] != self.user_id:
+            return None
         result = {}
         result['description'] = playlist['description']
         result['name'] = playlist['name']
@@ -117,7 +120,6 @@ class SpotifyToJson:
             items.extend(response_json['items'])
 
         result = []
-        # TODO: also add name and artist of song (for if Spotify doesn't work in the future)
         for i in items:
             # Do not store local songs (e.g. spotify:local:::blabla:182)
             if 'track' in i['track']['uri']:
