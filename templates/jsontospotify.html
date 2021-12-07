@@ -10,8 +10,14 @@
 
 <body>
     <div id="container">
-        <p>Coming soon...</p>
+        <input type="file" id="selectJson" value="Import JSON" accept="application/json" />
+        <br>
+        <button id="send">Create playlists</button>
+        <br>
+        <p id="success" hidden="true">Playlists successfully created</p>
     </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jsontospotify.js') }}"></script>
 </body>
 
 </html>

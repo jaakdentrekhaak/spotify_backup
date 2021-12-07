@@ -6,7 +6,6 @@ from SpotifyToJson import SpotifyToJson
 app = Flask(__name__)
 logged_in = False
 access_token = None
-scope = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public'
 spotify_to_json: SpotifyToJson = None
 json_to_spotify: JsonToSpotify = None
 
@@ -25,8 +24,7 @@ def home():
 
 @app.route('/login')
 def login():
-    # TODO: do not show separate login.html page, but directly run the implementation for the login button
-    global scope
+    scope = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public'
     return render_template('login.html', client_id=getClientId(), scope=scope)
 
 
@@ -35,9 +33,9 @@ def spotify_to_json_method():
     global logged_in, access_token, spotify_to_json
     if not logged_in:
         return redirect(url_for('login'))
-
-    if request.method == 'GET':
+    if spotify_to_json is None:
         spotify_to_json = SpotifyToJson(access_token)
+    if request.method == 'GET':
         user_name = spotify_to_json.getUserName()
         user_playlist_names_and_sizes = spotify_to_json.getUserPlaylistsNamesAndSizes()
         return render_template('spotifytojson.html', user_name=user_name, user_playlist_names_and_sizes=user_playlist_names_and_sizes)
@@ -64,14 +62,16 @@ def json_to_spotify_method():
     global logged_in, access_token, json_to_spotify
     if not logged_in:
         return redirect(url_for('login'))
-    if request.method == 'GET':
+
+    if json_to_spotify is None:
         json_to_spotify = JsonToSpotify(access_token)
+
+    if request.method == 'GET':
         user_name = json_to_spotify.getUserName()
-        # TODO
         return render_template('jsontospotify.html', user_name=user_name)
     else:
-        # TODO
-        return render_template('jsontospotify.html')
+        json_to_spotify.createPlaylists(request.get_json())
+        return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
 def getClientId():

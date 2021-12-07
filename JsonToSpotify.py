@@ -1,4 +1,5 @@
 import json
+from typing import Dict, List
 import requests
 
 
@@ -21,6 +22,10 @@ class JsonToSpotify():
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {self.access_token}'
         }
+
+    def createPlaylists(self, playlists: List[Dict]):
+        print(playlists)
+        # TODO
 
     def getUserName(self):
         return self.user_name

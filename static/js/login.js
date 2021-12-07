@@ -22,17 +22,14 @@
         // If we got the access token, send it to the server to log in
         window.location = 'http://localhost:5000?access_token=' + access_token
     } else {
-        document.getElementById('login-button').addEventListener('click', function () {
+        var redirect_uri = 'http://localhost:5000/login'; // Where we get access token as hash fragment parameter
 
-            var redirect_uri = 'http://localhost:5000/login'; // Where we get access token as hash fragment parameter
+        var url = 'https://accounts.spotify.com/authorize';
+        url += '?response_type=token';
+        url += '&client_id=' + encodeURIComponent(client_id); // client_id set in login.html
+        url += '&scope=' + encodeURIComponent(scope); // scope set in login.html
+        url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
 
-            var url = 'https://accounts.spotify.com/authorize';
-            url += '?response_type=token';
-            url += '&client_id=' + encodeURIComponent(client_id); // client_id set in login.html
-            url += '&scope=' + encodeURIComponent(scope); // scope set in login.html
-            url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-
-            window.location = url;
-        }, false);
+        window.location = url;
     }
 })();
