@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, Response
 import json
+from JsonToSpotify import JsonToSpotify
 from SpotifyToJson import SpotifyToJson
 
 app = Flask(__name__)
@@ -7,41 +8,39 @@ logged_in = False
 access_token = None
 scope = 'user-read-private user-read-email playlist-modify-private playlist-read-private playlist-modify-public'
 spotify_to_json: SpotifyToJson = None
+json_to_spotify: JsonToSpotify = None
 
 
-# TODO: create Spotify playlist from JSON
-# TODO: create frontpage where you have to choose if you want to do Spotify -> JSON or JSON -> Spotify and redirect buttons to different URLs
-#   spotify to json is the current implementatino; json to spotify should not get the information of all the playlists of the user
 @app.route('/')
 def home():
-    # TODO: should login when on main page (so before pressing the buttons to spotifytojson and jsontospotify!), but not do SpotifyToJson in this function
-    # TODO: improve login logic: everything with access_token should be in this function
-    #   The functions spotifytojson and jsontospotify should only have: if not logged_in -> redirect to login page
+    global logged_in, access_token
+    if access_token is None:
+        access_token = request.args.get('access_token')
+        if access_token is None:
+            return redirect(url_for('login'))
+        else:
+            logged_in = True
     return render_template('index.html')
 
 
 @app.route('/login')
 def login():
-    # TODO: prompt login if spotifytojson button is pressed on home page instead of redirecting to login.html file
+    # TODO: do not show separate login.html page, but directly run the implementation for the login button
     global scope
     return render_template('login.html', client_id=getClientId(), scope=scope)
 
 
 @app.route('/spotifytojson', methods=['GET', 'POST'])
 def spotify_to_json_method():
+    global logged_in, access_token, spotify_to_json
+    if not logged_in:
+        return redirect(url_for('login'))
+
     if request.method == 'GET':
-        global logged_in, access_token, spotify_to_json
-        access_token = request.args.get('access_token')
-        if access_token is not None:
-            # Assumes that the access_token is valid
-            logged_in = True
-            spotify_to_json = SpotifyToJson(access_token)
-        if not logged_in:
-            return redirect(url_for('login'))
-        else:
-            user_name = spotify_to_json.getUserName()
-            user_playlist_names_and_sizes = spotify_to_json.getUserPlaylistsNamesAndSizes()
-            return render_template('spotifytojson.html', user_name=user_name, user_playlist_names_and_sizes=user_playlist_names_and_sizes)
+        spotify_to_json = SpotifyToJson(access_token)
+        user_name = spotify_to_json.getUserName()
+        user_playlist_names_and_sizes = spotify_to_json.getUserPlaylistsNamesAndSizes()
+        return render_template('spotifytojson.html', user_name=user_name, user_playlist_names_and_sizes=user_playlist_names_and_sizes)
 
     else:
         # Returns dictionary that says which playlists have been selected for converting e.g. {'0': 'on'}
@@ -62,7 +61,17 @@ def spotify_to_json_method():
 
 @app.route('/jsontospotify', methods=['GET', 'POST'])
 def json_to_spotify_method():
-    return render_template('jsontospotify.html')
+    global logged_in, access_token, json_to_spotify
+    if not logged_in:
+        return redirect(url_for('login'))
+    if request.method == 'GET':
+        json_to_spotify = JsonToSpotify(access_token)
+        user_name = json_to_spotify.getUserName()
+        # TODO
+        return render_template('jsontospotify.html', user_name=user_name)
+    else:
+        # TODO
+        return render_template('jsontospotify.html')
 
 
 def getClientId():
