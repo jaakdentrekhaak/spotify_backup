@@ -24,7 +24,34 @@ class JsonToSpotify():
         }
 
     def createPlaylists(self, playlists: List[Dict]):
-        print(playlists)
+        for playlist in playlists:
+            new_playlist_href = self.createPlaylist(
+                playlist['name'], playlist['description'], playlist['public'])
+            self.addTracksToPlaylist(playlist['tracks'], new_playlist_href)
+
+    def createPlaylist(self, name: str, description: str, public: bool) -> str:
+        """Send a POST request to Spotify API to create a playlist with the given parameters.
+        Return the href of the created playlist.
+
+        Args:
+            name (str): name of playlist
+            description (str): description of playlist
+            public (bool): whether the playlist should be public
+
+        Returns:
+            str: href of the created playlist
+        """
+        url = f'https://api.spotify.com/v1/users/{self.user_id}/playlists'
+        data = {
+            'name': name,
+            'description': description,
+            'public': public
+        }
+        res = requests.post(url, json=data, headers=self.createHeaders())
+        return json.loads(res.content)['tracks']['href']
+
+    def addTracksToPlaylist(tracks: List[Dict], playlist_href: str):
+        pass
         # TODO
 
     def getUserName(self):
