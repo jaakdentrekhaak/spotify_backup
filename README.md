@@ -28,6 +28,7 @@ On the front page you can choose whether you want to convert your Spotify playli
 If you press the "JSON to Spotify"-button, you will see a page where you can upload your JSON file from your computer. If you press the "Create playlists"-button, the webserver will create the playlists inside the JSON file and add all the tracks to these playlists.
 
 # Development
+All the information for communication with Spotify's services can be found [here](https://developer.spotify.com/documentation/web-api/).
 ## Explanation Spotify authorization
 When a client goes to `/login`, he gets prompted with the `login.html` page from [this example](https://github.com/spotify/web-api-auth-examples/blob/master/implicit_grant/templates/index.html). Before the login button works, the client first has to get the client ID from this registered Spotify application (found in the `config.json` file). This client ID is passed to the login.html file via Jinja syntax ({{}}).
 
