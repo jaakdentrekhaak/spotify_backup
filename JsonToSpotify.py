@@ -48,11 +48,13 @@ class JsonToSpotify():
             'public': public
         }
         res = requests.post(url, json=data, headers=self.createHeaders())
-        return json.loads(res.content)['tracks']['href']
 
-    def addTracksToPlaylist(tracks: List[Dict], playlist_href: str):
-        pass
-        # TODO
+    def addTracksToPlaylist(self, tracks: List[Dict], playlist_href: str):
+        trackURIs = [t['uri'] for t in tracks]
+        chunks = [trackURIs[x:x+50] for x in range(0, len(trackURIs), 50)]
+        for chunk in chunks:
+            requests.post(playlist_href, json={
+                'uris': chunk}, headers=self.createHeaders())
 
     def getUserName(self):
         return self.user_name
