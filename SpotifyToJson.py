@@ -24,29 +24,21 @@ class SpotifyToJson:
         [
             {
                 "description": "",
-                "id": "4Ykre5kk7pZf7w0ZjuV1f3",
-                "name": "Second testing playlist",
-                "public": false,
-                "uri": "spotify:playlist:4Ykre5kk7pZf7w0ZjuV1f3",
+                "name": "Wednesday after your exam",
+                "public": true,
+                "uri": "spotify:playlist:1XTokSfNKiPkn2isbRHMJx",
                 "tracks": [
-                    "spotify:track:6EPRKhUOdiFSQwGBRBbvsZ",
-                    "spotify:track:6p8eFfPw3nQkf37aT3AkmK",
-                    "spotify:track:4OROzZUy6gOWN4UGQVaZMF",
-                    "spotify:track:4Zc7TCHzuNwL0AFBlyLdyr"
+                    {
+                        "uri": "spotify:track:02MWAaffLxlfxAUY7c5dvx",
+                        "name": "Heat Waves",
+                        "artists": [
+                            "Glass Animals"
+                        ]
+                    },
+                    ...
                 ]
             },
-            {
-                "description": "This is a playlist for development testing",
-                "id": "1qch9iOi4HDzxaYdKWTbGp",
-                "name": "Testing playlist",
-                "public": false,
-                "uri": "spotify:playlist:1qch9iOi4HDzxaYdKWTbGp",
-                "tracks": [
-                    "spotify:track:2SojLecJPW9zlNiwzDWmPv",
-                    "spotify:track:3XiNC94b4Tq1xwv70sQJGN",
-                    "spotify:track:4uhvMW7ly7tJil31YYscAN"
-                ]
-            }
+            ...
         ]
 
         Returns:

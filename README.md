@@ -1,6 +1,8 @@
 # About
 The purpose of this program is to store information of Spotify playlists to a JSON file so that you can later restore this data to create playlists (possibly on another account).
 
+Once you have the JSON file, this program also allows you to download all the playlists.
+
 # Requirements
 ## Spotify
 To interact with the Spotify API, you need a client_id for a registrated Spotify application. This can be found on the Spotify developers dashboard after creating an application: https://developer.spotify.com/dashboard/applications. The client_id needs to be added to the `config.json` file in the root folder like this, where you have to replace the values:
@@ -14,21 +16,31 @@ To interact with the Spotify API, you need a client_id for a registrated Spotify
 More information about the authorization can be found [here](https://developer.spotify.com/documentation/general/guides/authorization-guide/).
 
 ## Python libraries
-The only libraries that are required are `requests` and `flask` which can be installed with pip by typing in the terminal:
+The libraries that are required are `requests` and `flask` which can be installed with pip by typing in the terminal:
 ```bash
 pip install requests
 pip install Flask
 ```
 
+## Spotify downloader
+For downloading the playlists, [spotify-downloader](https://github.com/spotDL/spotify-downloader) is used. Spotify-downloader requires you to have `ffmpeg` installed. On Linux, this can be done with the command `sudo apt install ffmpeg`. After installing `ffmpeg`, the Python library for spotify-downloader can be installed with the command  `pip install spotdl`.
+
+NOTE: on 7 feb 2022, spotify-downloader is giving '`unable to get audio stream`' and you need to downgrade the `yt-dlp` library with the command: `pip install yt-dlp==2022.01.21`
+
 # How it works
+## Spotify backup
 The program creates a local webserver on http://localhost:5000. You can start this webserver by opening a terminal in the root directory of this project and typing `python3 server.py`. Once this server is running, you can connect to that URL with your browser. Upon opening that webpage, you will be asked to login to Spotify and accept to give the permissions for reading, creating and modifying playlists to this application.
 
 On the front page you can choose whether you want to convert your Spotify playlists into a JSON file or create Spotify playlists from a previously generated JSON file. If you press the "Spotify to JSON"-button, the webserver will ask all the information about your playlists to the Spotify servers, this can take a minute. Once the information is received, you will receive a webpage in your browser where the name of all your Spotify playlists and the number of tracks in those playlists will be displayed. You can then choose which playlists you want to save to a JSON file. When you checked all the playlists you want to convert, you press the "Convert"-button. The webserver will then return a downloadable JSON file which you can download and store on your computer. This JSON file contains information about all your selected playlists such as the name and description of the playlist, the tracks inside each playlist and also the names and artists for each track (so you can also use this JSON on other streaming platforms if Spotify doesn't exist anymore).
 
 If you press the "JSON to Spotify"-button, you will see a page where you can upload your JSON file from your computer. If you press the "Create playlists"-button, the webserver will create the playlists inside the JSON file and add all the tracks to these playlists.
 
+## Spotify downloader
+To download the playlists for which the information is stored in the generated JSON file, run `python3 downloadjson.py` and follow the instructions given in the console.
+
 # Development
 All the information for communication with Spotify's services can be found [here](https://developer.spotify.com/documentation/web-api/).
+
 ## Explanation Spotify authorization
 When a client goes to `/login`, he gets prompted with the `login.html` page from [this example](https://github.com/spotify/web-api-auth-examples/blob/master/implicit_grant/templates/index.html). Before the login button works, the client first has to get the client ID from this registered Spotify application (found in the `config.json` file). This client ID is passed to the login.html file via Jinja syntax ({{}}).
 
@@ -44,3 +56,6 @@ We need to be able to receive the playlists of the user and also be able to edit
 At this point our server has the access token of the logged-in client and can make further requests such as reading and creating playlists.
 
 NOTE: if new users want to use this program, they need to be given access to the application in the Spotify dashboard, unless they create their own Spotify application on https://developer.spotify.com/dashboard/applications
+
+## Spotify downloader
+[Github](https://github.com/spotDL/spotify-downloader)

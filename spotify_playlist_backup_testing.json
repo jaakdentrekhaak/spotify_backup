@@ -1,0 +1,75 @@
+[
+    {
+        "description": "",
+        "name": "Second testing playlist",
+        "public": false,
+        "uri": "spotify:playlist:4Ykre5kk7pZf7w0ZjuV1f3",
+        "tracks": [
+            {
+                "uri": "spotify:track:6EPRKhUOdiFSQwGBRBbvsZ",
+                "name": "Ace of Spades",
+                "artists": [
+                    "Mot\u00f6rhead"
+                ]
+            },
+            {
+                "uri": "spotify:track:6p8eFfPw3nQkf37aT3AkmK",
+                "name": "Fear of the Dark - 2015 Remaster",
+                "artists": [
+                    "Iron Maiden"
+                ]
+            },
+            {
+                "uri": "spotify:track:4OROzZUy6gOWN4UGQVaZMF",
+                "name": "The Trooper - 2015 Remaster",
+                "artists": [
+                    "Iron Maiden"
+                ]
+            },
+            {
+                "uri": "spotify:track:4Zc7TCHzuNwL0AFBlyLdyr",
+                "name": "Run to the Hills - 2015 Remaster",
+                "artists": [
+                    "Iron Maiden"
+                ]
+            }
+        ]
+    },
+    {
+        "description": "This is a playlist for development testing",
+        "name": "Testing playlist",
+        "public": false,
+        "uri": "spotify:playlist:1qch9iOi4HDzxaYdKWTbGp",
+        "tracks": [
+            {
+                "uri": "spotify:track:2SojLecJPW9zlNiwzDWmPv",
+                "name": "Be Clearr",
+                "artists": [
+                    "Pop Smoke"
+                ]
+            },
+            {
+                "uri": "spotify:track:3XiNC94b4Tq1xwv70sQJGN",
+                "name": "Sanguine Paradise",
+                "artists": [
+                    "Lil Uzi Vert"
+                ]
+            },
+            {
+                "uri": "spotify:track:4uhvMW7ly7tJil31YYscAN",
+                "name": "Erase Your Social",
+                "artists": [
+                    "Lil Uzi Vert"
+                ]
+            },
+            {
+                "uri": "spotify:track:0YzzJnMRltG5ja5c9D3TAT",
+                "name": "Stuck In A Dream (feat. Gunna)",
+                "artists": [
+                    "Lil Mosey",
+                    "Gunna"
+                ]
+            }
+        ]
+    }
+]
