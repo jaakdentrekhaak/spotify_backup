@@ -24,14 +24,9 @@ def controller():
         user_auth=False,
     )
 
-    for i, pl in enumerate(playlists):
+    for pl in playlists:
         pl_name = pl['name']
         create_directory(download_path, pl_name)
-
-        # for j, track in enumerate(pl['tracks']):
-        #     print_progress(i, len(playlists), j, len(pl['tracks']))
-        #     track_uri = extract_track_uri(track['uri'])
-        #     download_track(track_uri, f'{download_path}/{pl_name}')
         uris = [extract_track_uri(track['uri']) for track in pl['tracks']]
         download_tracks(uris, f'{download_path}/{pl_name}')
 
@@ -60,20 +55,6 @@ def extract_track_uri(track_uri: str):
     temp = track_uri.split(':')
     assert len(temp) == 3
     return temp[-1]
-
-
-# def download_track(uri: str, playlist_path: str):
-#     assert os.path.isdir(playlist_path)
-#     bash_command = f'spotdl https://open.spotify.com/track/{uri}'
-#     try:
-#         process = subprocess.Popen(
-#             bash_command.split(), stdout=subprocess.PIPE, cwd=playlist_path)
-#         status = process.wait()
-#     except OSError:
-#         pass
-#     except subprocess.CalledProcessError:
-#         pass
-#     # TODO: subprocess calls other python file which throws error if song already downloaded -> I don't think you can catch this error?
 
 
 def download_tracks(uris: List[str], playlist_path: str):
@@ -106,8 +87,7 @@ def download_tracks(uris: List[str], playlist_path: str):
         # Start downloading
         if len(song_list) > 0:
             downloader.download_multiple_songs(song_list)
-            # TODO: handle OSError (not possible -> temporarily commented out)
-            # TODO: create own log that stores already downloaded track uris
+            # TODO: handle OSError (not possible -> temporarily commented out raise OSError in spotdl/search/song_gatherer.py)
 
 
 def create_directory(root: str, dir_name: str):
