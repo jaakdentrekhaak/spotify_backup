@@ -59,3 +59,4 @@ NOTE: if new users want to use this program, they need to be given access to the
 
 ## Spotify downloader
 [Github](https://github.com/spotDL/spotify-downloader)
+NOTE: I commented out the raise of an OSError in song_gatherer.py, because if one song in the song list is already downloaded, all the other downloads are also stopped, so it was not usable for updating a playlist folder (waiting for a response from the devs) (or create own log with track uris)
